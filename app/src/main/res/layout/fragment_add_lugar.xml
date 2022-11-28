@@ -40,7 +40,7 @@
         android:inputType="textPersonName" />
 
     <Button
-        android:id="@+id/bt_update_lugar"
+        android:id="@+id/bt_add_lugar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/bt_add_lugar" />

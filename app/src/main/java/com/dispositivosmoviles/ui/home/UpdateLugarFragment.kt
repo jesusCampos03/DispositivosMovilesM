@@ -5,52 +5,65 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.dispositivosmoviles.R
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import com.dispositivosmoviles.databinding.FragmentUpdateLugarBinding
+import com.dispositivosmoviles.model.Lugar
+import com.dispositivosmoviles.viewmodel.HomeViewModel
 
-/**
- * A simple [Fragment] subclass.
- * Use the [UpdateLugarFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class UpdateLugarFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+
+    //recupera argumentos
+
+    private  val args by navArgs<UpdateLugarFragmentArgs>()
+
+    private var _binding : FragmentUpdateLugarBinding? = null
+    private val binding get() = _binding!!
+    private lateinit var homoViewModel: HomeViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        homoViewModel = ViewModelProvider(this).get(HomeViewModel :: class.java)
+        _binding = FragmentUpdateLugarBinding.inflate(inflater,container,false)
+
+        binding.etNombre.setText(args.lugar.nombre)
+        binding.etTelefono.setText(args.lugar.telefono)
+        binding.etCorreoLugar.setText(args.lugar.correoLugar)
+        binding.etWeb.setText(args.lugar.web)
+
+        binding.btUpdateLugar.setOnClickListener{updateLugar() }
+
+        // Inflate the layout for this fragment
+        return binding.root
+    }
+
+    private fun updateLugar(){
+        val nombre = binding.etNombre.text
+        val correo = binding.etTelefono.text
+        val telefono = binding.etCorreoLugar.text
+        val web = binding.etWeb.text
+        if (nombre.isEmpty()){
+            Toast.makeText(requireContext(),getString(R.string.msg_data),Toast.LENGTH_LONG)
+        }
+        else if(correo.isEmpty()){
+            Toast.makeText(requireContext(),getString(R.string.msg_data),Toast.LENGTH_LONG)
+        }
+        else{
+            val lugar = Lugar(args.lugar.id,nombre,correo,web,telefono)
+            homoViewModel.saveLugar(lugar)
+            Toast.makeText(requireContext(),getString(R.string.msg_lugar_updated),Toast.LENGTH_LONG).show()
+            findNavController().navigate(R.id.action_addLugarFragment_to_nav_home)
         }
     }
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_update_lugar, container, false)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment UpdateLugarFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic fun newInstance(param1: String, param2: String) =
-                UpdateLugarFragment().apply {
-                    arguments = Bundle().apply {
-                        putString(ARG_PARAM1, param1)
-                        putString(ARG_PARAM2, param2)
-                    }
-                }
-    }
 }

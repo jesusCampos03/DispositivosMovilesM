@@ -34,8 +34,8 @@ class addLugarFragment : Fragment() {
     ): View {
         lugarViewModel = ViewModelProvider(this).get(HomeViewModel::class.java)
         _binding = FragmentAddLugarBinding.inflate(inflater, container, false)
-// me daba error
-        binding.btUpdateLugar.setOnClickListener { addLugar() }
+
+        binding.btAddLugar.setOnClickListener { addLugar() }
 
         return binding.root
     }

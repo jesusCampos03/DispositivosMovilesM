@@ -6,17 +6,6 @@
     app:startDestination="@+id/nav_home">
 
     <fragment
-        android:id="@+id/updateLugarFragment"
-        android:name="com.dispositivosmoviles.ui.home.HomeFragment"
-        android:label="fragment_update_lugar"
-        tools:layout="@layout/fragment_update_lugar">
-        <action
-            android:id="@+id/action_updateLugarFragment_to_nav_home"
-            app:destination="@id/nav_home" />
-        <argument android:name="lugar"
-            app:argType="com.dispositivosmoviles.model.Lugar" />
-    </fragment>
-    <fragment
         android:id="@+id/nav_home"
         android:name="com.dispositivosmoviles.ui.home.HomeFragment"
         android:label="@string/menu_home"
@@ -25,11 +14,8 @@
             android:id="@+id/action_nav_home_to_addLugarFragment"
             app:destination="@id/addLugarFragment" />
         <action
-            android:id="@+id/action_nav_home_to_updateLugarFragment2"
+            android:id="@+id/action_nav_home_to_updateLugarFragment"
             app:destination="@id/updateLugarFragment" />
-        <action
-            android:id="@+id/action_nav_home_to_addLugarFragment2"
-            app:destination="@id/addLugarFragment" />
     </fragment>
 
     <fragment
@@ -51,5 +37,17 @@
         <action
             android:id="@+id/action_addLugarFragment_to_nav_home"
             app:destination="@id/nav_home" />
+    </fragment>
+    <fragment
+        android:id="@+id/updateLugarFragment"
+        android:name="com.dispositivosmoviles.ui.home.addLugarFragment"
+        android:label="fragment_update_lugar"
+        tools:layout="@layout/fragment_update_lugar" >
+        <action
+            android:id="@+id/action_updateLugarFragment_to_nav_home"
+            app:destination="@id/nav_home" />
+        <argument
+            android:name="lugar"
+            app:argType="com.dispositivosmoviles.model.Lugar" />
     </fragment>
 </navigation>
