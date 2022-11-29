@@ -4,10 +4,12 @@ import androidx.lifecycle.LiveData
 import com.dispositivosmoviles.model.Lugar
 
 
-interface LugarDao {
+
+
+class LugarDao {
     //FireBase var
-    private var codigoUsuario: String
-    private var firestore:FirebaseFirestore
+    //private var codigoUsuario: String
+    //private var fire
 
     //CRUD Create Read Update Delete
 
@@ -23,7 +25,9 @@ interface LugarDao {
 
     }
 
-    fun getLugares() : LiveData<List<Lugar>>{
+  //  fun getLugares() : LiveData<List<Lugar>>{
 
     }
-}
+
+
+//}

@@ -40,7 +40,7 @@
     </fragment>
     <fragment
         android:id="@+id/updateLugarFragment"
-        android:name="com.dispositivosmoviles.ui.home.addLugarFragment"
+        android:name="com.dispositivosmoviles.UpdateLugarFragment"
         android:label="fragment_update_lugar"
         tools:layout="@layout/fragment_update_lugar" >
         <action

@@ -10,13 +10,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.dispositivosmoviles.R
+import com.dispositivosmoviles.UpdateLugarFragmentArgs
 import com.dispositivosmoviles.databinding.FragmentUpdateLugarBinding
 import com.dispositivosmoviles.model.Lugar
 import com.dispositivosmoviles.viewmodel.HomeViewModel
 
-class UpdateLugarFragment : Fragment() {
 
-    //recupera argumentos
+class UpdateLugarFragment : Fragment() {
 
     private  val args by navArgs<UpdateLugarFragmentArgs>()
 
@@ -38,7 +38,7 @@ class UpdateLugarFragment : Fragment() {
 
         binding.etNombre.setText(args.lugar.nombre)
         binding.etTelefono.setText(args.lugar.telefono)
-        binding.etCorreoLugar.setText(args.lugar.correoLugar)
+        binding.etCorreoLugar.setText(args.lugar.correo)
         binding.etWeb.setText(args.lugar.web)
 
         binding.btUpdateLugar.setOnClickListener{updateLugar() }
@@ -48,12 +48,12 @@ class UpdateLugarFragment : Fragment() {
     }
 
     private fun updateLugar(){
-        val nombre = binding.etNombre.text
-        val correo = binding.etTelefono.text
-        val telefono = binding.etCorreoLugar.text
-        val web = binding.etWeb.text
+        val nombre = binding.etNombre.text.toString()
+        val correo = binding.etTelefono.text.toString()
+        val telefono = binding.etCorreoLugar.text.toString()
+        val web = binding.etWeb.text.toString()
         if (nombre.isEmpty()){
-            Toast.makeText(requireContext(),getString(R.string.msg_data),Toast.LENGTH_LONG)
+            Toast.makeText(requireContext(),getString(R.string.msg_data), Toast.LENGTH_LONG)
         }
         else if(correo.isEmpty()){
             Toast.makeText(requireContext(),getString(R.string.msg_data),Toast.LENGTH_LONG)
@@ -65,5 +65,6 @@ class UpdateLugarFragment : Fragment() {
             findNavController().navigate(R.id.action_addLugarFragment_to_nav_home)
         }
     }
+
 
 }
